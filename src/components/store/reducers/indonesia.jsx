@@ -19,15 +19,15 @@ const indonesiaSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder
-            .addCase(getData.pending, (state, action) => {
+            .addCase(getIndonesia.pending, (state, action) => {
                 state.isLoading = true;
             })
-            .addCase(getData.fulfilled, (state, action) => {
+            .addCase(getIndonesia.fulfilled, (state, action) => {
                 state.isLoading = false;
                 state.data = action.payload;
                 // console.log(action.payload);
             })
-            .addCase(getData.rejected, (state, action) => {
+            .addCase(getIndonesia.rejected, (state, action) => {
                 state.isLoading = false;
                 console.log("error", action.error.message);
             });
@@ -37,7 +37,7 @@ const indonesiaSlice = createSlice({
 export const { setData, resetData } = indonesiaSlice.actions;
 export default indonesiaSlice.reducer;
 
-export const getData = createAsyncThunk("indonesia/getData", async () => {
+export const getIndonesia = createAsyncThunk("indonesia/getData", async () => {
     try {
         const response = await axios.get(
             `${process.env.REACT_APP_BASE_URL}top-headlines?country=id&apiKey=${process.env.REACT_APP_API_KEY}`
