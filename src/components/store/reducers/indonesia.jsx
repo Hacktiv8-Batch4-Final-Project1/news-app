@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
 const initialState = {
-    data: null,
+    indonesia: null,
     isLoading: false,
 };
 
@@ -11,10 +11,10 @@ const indonesiaSlice = createSlice({
     initialState,
     reducers: {
         setData: (state, action) => {
-            state.data = action.payload;
+            state.indonesia = action.payload;
         },
         resetData: (state) => {
-            state.data = initialState.data;
+            state.indonesia = initialState.data;
         },
     },
     extraReducers: (builder) => {
@@ -24,7 +24,7 @@ const indonesiaSlice = createSlice({
             })
             .addCase(getIndonesia.fulfilled, (state, action) => {
                 state.isLoading = false;
-                state.data = action.payload;
+                state.indonesia = action.payload;
                 // console.log(action.payload);
             })
             .addCase(getIndonesia.rejected, (state, action) => {

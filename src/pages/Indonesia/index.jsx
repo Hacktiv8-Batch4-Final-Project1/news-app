@@ -5,8 +5,8 @@ import Card from "../../components/molecules/Card";
 
 const Indonesia = () => {
     const dispatch = useDispatch();
-    const { data, isLoading } = useSelector((state) => state.indonesia);
-    console.log(data);
+    const { indonesia, isLoading } = useSelector((state) => state.indonesia);
+    console.log(indonesia);
 
     useEffect(() => {
         dispatch(getIndonesia());
@@ -18,7 +18,7 @@ const Indonesia = () => {
             </div>
             <hr />
             <div className="d-flex justify-content-center row">
-                {data ? <Card data={data} /> : null}
+                {indonesia ? <Card data={indonesia} /> : null}
             </div>
         </div>
     );
