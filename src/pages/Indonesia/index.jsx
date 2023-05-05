@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getData } from "../../components/store/reducers/indonesia";
+import { getIndonesia } from "../../components/store/reducers/indonesia";
 import Card from "../../components/molecules/Card";
 
 const Indonesia = () => {
@@ -9,7 +9,7 @@ const Indonesia = () => {
     console.log(data);
 
     useEffect(() => {
-        dispatch(getData());
+        dispatch(getIndonesia());
     }, []);
     return (
         <div className="container-fluid">
