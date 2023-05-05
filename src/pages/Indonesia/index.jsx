@@ -1,12 +1,13 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getIndonesia } from "../../components/store/reducers/indonesia";
+import { getCari } from "../../components/store/reducers/cari";
 import Card from "../../components/molecules/Card";
 
 const Indonesia = () => {
     const dispatch = useDispatch();
     const { indonesia, isLoading } = useSelector((state) => state.indonesia);
-    // console.log(indonesia);
+    const { dataCari } = useSelector((state) => state.cari);
 
     useEffect(() => {
         dispatch(getIndonesia());
@@ -19,7 +20,27 @@ const Indonesia = () => {
             </div>
             <hr />
             <div className="d-flex justify-content-center row">
-                {isLoading ? (
+                {dataCari ? (
+                    <Card data={dataCari} />
+                ) : (
+                    <>
+                        {isLoading ? (
+                            <div className="d-flex justify-content-center">
+                                <div
+                                    className="spinner-border text-primary"
+                                    role="status"
+                                >
+                                    <span className="visually-hidden">
+                                        Loading...
+                                    </span>
+                                </div>
+                            </div>
+                        ) : (
+                            <>{indonesia ? <Card data={indonesia} /> : null}</>
+                        )}
+                    </>
+                )}
+                {/* {isLoading ? (
                     <div className="d-flex justify-content-center">
                         <div
                             className="spinner-border text-primary"
@@ -30,7 +51,7 @@ const Indonesia = () => {
                     </div>
                 ) : (
                     <>{indonesia ? <Card data={indonesia} /> : null}</>
-                )}
+                )} */}
             </div>
         </div>
     );
