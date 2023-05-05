@@ -6,11 +6,12 @@ import Card from "../../components/molecules/Card";
 const Indonesia = () => {
     const dispatch = useDispatch();
     const { indonesia, isLoading } = useSelector((state) => state.indonesia);
-    console.log(indonesia);
+    // console.log(indonesia);
 
     useEffect(() => {
         dispatch(getIndonesia());
-    }, []);
+    }, [dispatch]);
+
     return (
         <div className="container-fluid">
             <div className="d-flex justify-content-center mt-3">
@@ -18,7 +19,18 @@ const Indonesia = () => {
             </div>
             <hr />
             <div className="d-flex justify-content-center row">
-                {indonesia ? <Card data={indonesia} /> : null}
+                {isLoading ? (
+                    <div className="d-flex justify-content-center">
+                        <div
+                            className="spinner-border text-primary"
+                            role="status"
+                        >
+                            <span className="visually-hidden">Loading...</span>
+                        </div>
+                    </div>
+                ) : (
+                    <>{indonesia ? <Card data={indonesia} /> : null}</>
+                )}
             </div>
         </div>
     );
