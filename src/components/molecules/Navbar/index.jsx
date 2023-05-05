@@ -1,7 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import CariForm from "../CariForm";
+import { useDispatch } from "react-redux";
+import { getCari } from "../../store/reducers/cari";
 
-const index = () => {
+const Navbar = () => {
+    const dispatch = useDispatch();
+    const handleSubmit = (values) => {
+        dispatch(getCari(values));
+    };
     return (
         <nav
             className="navbar navbar-expand-lg bg-body-tertiary bg-dark"
@@ -64,24 +71,11 @@ const index = () => {
                             </Link>
                         </li>
                     </ul>
-                    <form className="d-flex" role="search">
-                        <input
-                            className="form-control me-2"
-                            type="search"
-                            placeholder="Cari berita"
-                            aria-label="Search"
-                        />
-                        <button
-                            className="btn btn-outline-success"
-                            type="submit"
-                        >
-                            Cari
-                        </button>
-                    </form>
+                    <CariForm onSubmit={handleSubmit} />
                 </div>
             </div>
         </nav>
     );
 };
 
-export default index;
+export default Navbar;
