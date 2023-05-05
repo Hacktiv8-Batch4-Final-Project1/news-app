@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getIndonesia } from "../../components/store/reducers/indonesia";
-import { getCari } from "../../components/store/reducers/cari";
 import Card from "../../components/molecules/Card";
 
 const Indonesia = () => {
