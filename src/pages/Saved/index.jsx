@@ -4,13 +4,16 @@ import {Table} from "react-bootstrap";
 const Saved = () => {
   return (
     <div className="container-fluid">
-      <div className="d-flex justify-content-center mt-3">
-          <h1>Programming News</h1>
-      </div>
+      <Table striped>
+        <thead>
+          <tr>
+            <th>Source</th>
+            <th>Title</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+      </Table>
       <hr />
-      <div className="d-flex justify-content-center row">
-      
-      </div>
     </div>
   );
 }
