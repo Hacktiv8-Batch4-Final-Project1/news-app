@@ -39,7 +39,7 @@ export default covidSlice.reducer;
 export const getCovid = createAsyncThunk("covid/getData", async () => {
     try {
         const response = await axios.get(
-            `${process.env.REACT_APP_BASE_URL}top-headlines?q=covid-19&apiKey=${process.env.REACT_APP_API_KEY}`
+            `${process.env.REACT_APP_BASE_URL}everything?q=covid-19&from=2023-04-06&to=2023-05-06&apiKey=${process.env.REACT_APP_API_KEY}`
         );
         return response.data.articles;
     } catch (error) {
