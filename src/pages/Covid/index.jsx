@@ -8,6 +8,7 @@ const Covid = (props) => {
     const dispatch = useDispatch();
     const { covid, isLoading } = useSelector((state) => state.covid);
     const { dataCari } = useSelector((state) => state.cari);
+    const { cari } = useSelector((state) => state.cari);
 
     useEffect(() => {
         dispatch(getCovid());
@@ -22,7 +23,7 @@ const Covid = (props) => {
             </div>
             <hr />
             <div className="d-flex justify-content-center row">
-                {dataCari ? (
+                {dataCari && cari ? (
                     <Card data={dataCari} />
                 ) : (
                     <>

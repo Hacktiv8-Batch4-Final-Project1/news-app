@@ -8,6 +8,7 @@ const Programming = (props) => {
     const dispatch = useDispatch();
     const { programming, isLoading } = useSelector((state) => state.programming);
     const { dataCari } = useSelector((state) => state.cari);
+    const { cari } = useSelector((state) => state.cari);
 
     useEffect(() => {
         dispatch(getProgramming());
@@ -22,7 +23,7 @@ const Programming = (props) => {
             </div>
             <hr />
             <div className="d-flex justify-content-center row">
-                {dataCari ? (
+                {dataCari && cari ? (
                     <Card data={dataCari} />
                 ) : (
                     <>
