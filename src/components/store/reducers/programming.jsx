@@ -43,7 +43,7 @@ export const getProgramming = createAsyncThunk("programming/getData", async () =
         const monthAgo = new Date(date.setMonth(date.getMonth() - 1)).toISOString();
         // console.log('hari ini : ', fromDate, 'sebulan yang lalu : ', monthAgo);
         const response = await axios.get(
-            `${process.env.REACT_APP_BASE_URL}everything?q=programming&from=${fromDate}&to=${monthAgo}&apiKey=${process.env.REACT_APP_API_KEY}`
+            `${process.env.REACT_APP_BASE_URL}everything?q=programming&from=${monthAgo}&to=${fromDate}&sortBy=publishedAt&pageSize=100&apiKey=${process.env.REACT_APP_API_KEY}`
         );
         return response.data.articles;
     } catch (error) {
