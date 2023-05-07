@@ -8,7 +8,6 @@ const Indonesia = (props) => {
     const dispatch = useDispatch();
     const { indonesia, isLoading } = useSelector((state) => state.indonesia);
     const { dataCari } = useSelector((state) => state.cari);
-    const { cari } = useSelector((state) => state.cari);
 
     useEffect(() => {
         dispatch(getIndonesia());
@@ -23,7 +22,7 @@ const Indonesia = (props) => {
             </div>
             <hr />
             <div className="d-flex justify-content-center row">
-                {dataCari && cari ? (
+                {dataCari ? (
                     <Card data={dataCari} />
                 ) : (
                     <>
