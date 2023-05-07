@@ -1,9 +1,10 @@
 import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { connect, useDispatch, useSelector } from "react-redux";
 import { getIndonesia } from "../../components/store/reducers/indonesia";
 import Card from "../../components/molecules/Card";
 
-const Indonesia = () => {
+const Indonesia = (props) => {
+    // console.log(props.cari?.CariForm?.values?.cari);
     const dispatch = useDispatch();
     const { indonesia, isLoading } = useSelector((state) => state.indonesia);
     const { dataCari } = useSelector((state) => state.cari);
@@ -15,7 +16,9 @@ const Indonesia = () => {
     return (
         <div className="container-fluid">
             <div className="d-flex justify-content-center mt-3">
-                <h1>News</h1>
+                {dataCari ? (
+                    <h1>{props.cari?.CariForm?.values?.cari} News</h1>
+                ) : <h1>News</h1>}
             </div>
             <hr />
             <div className="d-flex justify-content-center row">
@@ -56,4 +59,10 @@ const Indonesia = () => {
     );
 };
 
-export default Indonesia;
+const mapStateToProps = (state) => {
+    return {
+        cari: state.form,
+    };
+};
+
+export default connect(mapStateToProps)(Indonesia);
