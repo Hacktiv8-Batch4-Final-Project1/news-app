@@ -1,46 +1,76 @@
 import moment from "moment/moment";
 import React from "react";
+import { setData, removeData } from "../../store/reducers/saved";
+import { useDispatch, useSelector } from "react-redux";
 
-const index = ({ data }) => {
+const Card = ({ data, index }) => {
+    const { saved } = useSelector((state) => state.saved);
+    // console.log(saved);
+    const dispatch = useDispatch();
+    const handleSave = () => {
+        // console.log(data);
+        dispatch(setData(data));
+    };
+
     return (
         <>
-            {data.map((item, index) => (
                 <div
                     className="card mb-2 me-2"
                     style={{ width: "18rem" }}
                     key={index}
                 >
-                    {/* <img
-                        src={item.urlToImage}
-                        className="card-img-top"
-                        alt={item.title}
-                    /> */}
+                    {!data.urlToImage ? (
+                        <img
+                            src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Image_not_available.png/800px-Image_not_available.png?20210219185637"
+                            className="card-img-top"
+                            alt={data.title}
+                        />
+                    ) : (
+                        <img
+                            src={data.urlToImage}
+                            className="card-img-top"
+                            alt={data.title}
+                        />
+                    )}
                     <div className="card-body">
-                        <p>{item.author}</p>
+                        <p>{data.author}</p>
                         <p>
-                            {moment(item.publishedAt).format(
+                            {moment(data.publishedAt).format(
                                 "MMMM Do YYYY, h:mm:ss z"
                             )}
                         </p>
-                        <h5 className="card-title">{item.title}</h5>
-                        <p className="card-text">{item.description}</p>
+                        <h5 className="card-title">{data.title}</h5>
+                        <p className="card-text">{data.description}</p>
                     </div>
                     <div className="card-footer">
                         <a
-                            href={item.url}
+                            href={data.url}
                             className="btn btn-info me-2"
                             target="_blank"
                         >
                             News page
                         </a>
-                        <a href="#" className="btn btn-primary">
-                            Save
-                        </a>
+                        
+                        {saved.find((item) => item.url === data.url) ? (
+                            
+                            <button
+                                className="btn btn-danger"
+                                onClick={() => dispatch(removeData(data.url))}
+                            >
+                                Un-Saved
+                            </button>
+                        ) : (
+                            <button
+                                className="btn btn-primary"
+                                onClick={handleSave}
+                            >
+                                Save
+                            </button>
+                        )}
                     </div>
                 </div>
-            ))}
         </>
     );
 };
 
-export default index;
+export default Card;
