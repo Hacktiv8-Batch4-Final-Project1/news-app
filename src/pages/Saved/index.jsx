@@ -1,19 +1,16 @@
 import React from "react";
-import {Table} from "react-bootstrap";
+import { useSelector } from "react-redux";
 
 const Saved = () => {
   return (
     <div className="container-fluid">
-      <Table striped>
-        <thead>
-          <tr>
-            <th>Source</th>
-            <th>Title</th>
-            <th>Description</th>
-          </tr>
-        </thead>
-      </Table>
+      <div className="d-flex justify-content-center mt-3">
+          <h1>Programming News</h1>
+      </div>
       <hr />
+      <div className="d-flex justify-content-center row">
+      
+      </div>
     </div>
   );
 }

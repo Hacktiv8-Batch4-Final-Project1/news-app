@@ -1,9 +1,10 @@
 import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { connect, useDispatch, useSelector } from "react-redux";
 import { getCovid } from "../../components/store/reducers/covid";
 import Card from "../../components/molecules/Card";
 
-const Covid = () => {
+const Covid = (props) => {
+    // console.log(props.cari?.CariForm?.values?.cari);
     const dispatch = useDispatch();
     const { covid, isLoading } = useSelector((state) => state.covid);
     const { dataCari } = useSelector((state) => state.cari);
@@ -15,11 +16,13 @@ const Covid = () => {
     return (
         <div className="container-fluid">
             <div className="d-flex justify-content-center mt-3">
-                <h1>COVID-19 News</h1>
+                {dataCari ? (
+                    <h1>{props.cari?.CariForm?.values?.cari} News</h1>
+                ) : <h1>COVID-19 News</h1>}
             </div>
             <hr />
             <div className="d-flex justify-content-center row">
-                {dataCari ? (
+            {dataCari ? (
                     <Card data={dataCari} />
                 ) : (
                     <>
@@ -35,7 +38,17 @@ const Covid = () => {
                                 </div>
                             </div>
                         ) : (
-                            <>{covid ? <Card data={covid} /> : null}</>
+                            <>{covid ? (
+                                <>
+                                    {
+                                        covid.map((item, index) => {
+                                            return (
+                                                <Card data={item} key={index} />
+                                            )
+                                        })
+                                    }
+                                </>
+                            ) : null}</>
                         )}
                     </>
                 )}
@@ -45,4 +58,10 @@ const Covid = () => {
     );
 };
 
-export default Covid;
+const mapStateToProps = (state) => {
+    return {
+        cari: state.form,
+    };
+};
+
+export default connect(mapStateToProps)(Covid);

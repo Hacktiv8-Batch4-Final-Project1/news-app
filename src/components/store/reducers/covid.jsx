@@ -38,8 +38,12 @@ export default covidSlice.reducer;
 
 export const getCovid = createAsyncThunk("covid/getData", async () => {
     try {
+        const date = new Date();
+        const fromDate = new Date().toISOString();
+        const monthAgo = new Date(date.setMonth(date.getMonth() - 1)).toISOString();
+        // console.log('hari ini : ', fromDate, 'sebulan yang lalu : ', monthAgo);
         const response = await axios.get(
-            `${process.env.REACT_APP_BASE_URL}everything?q=covid-19&from=2023-04-06&to=2023-05-06&apiKey=${process.env.REACT_APP_API_KEY}`
+            `${process.env.REACT_APP_BASE_URL}everything?q=covid-19&from=${monthAgo}&to=${fromDate}&sortBy=publishedAt&apiKey=${process.env.REACT_APP_API_KEY}`
         );
         return response.data.articles;
     } catch (error) {

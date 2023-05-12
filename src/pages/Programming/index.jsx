@@ -1,9 +1,10 @@
 import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { connect, useDispatch, useSelector } from "react-redux";
 import { getProgramming } from "../../components/store/reducers/programming";
 import Card from "../../components/molecules/Card";
 
-const Programming = () => {
+const Programming = (props) => {
+    // console.log(props.cari?.CariForm?.values?.cari);
     const dispatch = useDispatch();
     const { programming, isLoading } = useSelector((state) => state.programming);
     const { dataCari } = useSelector((state) => state.cari);
@@ -15,11 +16,13 @@ const Programming = () => {
     return (
         <div className="container-fluid">
             <div className="d-flex justify-content-center mt-3">
-                <h1>Programming News</h1>
+                {dataCari ? (
+                    <h1>{props.cari?.CariForm?.values?.cari} News</h1>
+                ) : <h1>Programming News</h1>}
             </div>
             <hr />
             <div className="d-flex justify-content-center row">
-                {dataCari ? (
+            {dataCari ? (
                     <Card data={dataCari} />
                 ) : (
                     <>
@@ -35,7 +38,17 @@ const Programming = () => {
                                 </div>
                             </div>
                         ) : (
-                            <>{programming ? <Card data={programming} /> : null}</>
+                            <>{programming ? (
+                                <>
+                                    {
+                                        programming.map((item, index) => {
+                                            return (
+                                                <Card data={item} key={index} />
+                                            )
+                                        })
+                                    }
+                                </>
+                            ) : null}</>
                         )}
                     </>
                 )}
@@ -45,4 +58,10 @@ const Programming = () => {
     );
 };
 
-export default Programming;
+const mapStateToProps = (state) => {
+    return {
+        cari: state.form,
+    };
+};
+
+export default connect(mapStateToProps)(Programming);
