@@ -22,7 +22,7 @@ const Covid = (props) => {
             </div>
             <hr />
             <div className="d-flex justify-content-center row">
-                {dataCari ? (
+            {dataCari ? (
                     <Card data={dataCari} />
                 ) : (
                     <>
@@ -38,7 +38,17 @@ const Covid = (props) => {
                                 </div>
                             </div>
                         ) : (
-                            <>{covid ? <Card data={covid} /> : null}</>
+                            <>{covid ? (
+                                <>
+                                    {
+                                        covid.map((item, index) => {
+                                            return (
+                                                <Card data={item} key={index} />
+                                            )
+                                        })
+                                    }
+                                </>
+                            ) : null}</>
                         )}
                     </>
                 )}

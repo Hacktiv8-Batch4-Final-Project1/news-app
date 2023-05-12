@@ -38,10 +38,40 @@ const Indonesia = (props) => {
                                 </div>
                             </div>
                         ) : (
-                            <>{indonesia ? <Card data={indonesia} /> : null}</>
+                            <>{indonesia ? (
+                                <>
+                                    {
+                                        indonesia.map((item, index) => {
+                                            return (
+                                                <Card data={item} key={index} />
+                                            )
+                                        })
+                                    }
+                                </>
+                            ) : null}</>
                         )}
                     </>
                 )}
+                {/* {dataCari ? (
+                    <Card data={dataCari} />
+                ) : (
+                    <>
+                        {isLoading ? (
+                            <div className="d-flex justify-content-center">
+                                <div
+                                    className="spinner-border text-primary"
+                                    role="status"
+                                >
+                                    <span className="visually-hidden">
+                                        Loading...
+                                    </span>
+                                </div>
+                            </div>
+                        ) : (
+                            <>{indonesia ? <Card data={indonesia} /> : null}</>
+                        )}
+                    </>
+                )} */}
                 {/* {isLoading ? (
                     <div className="d-flex justify-content-center">
                         <div

@@ -22,7 +22,7 @@ const Programming = (props) => {
             </div>
             <hr />
             <div className="d-flex justify-content-center row">
-                {dataCari ? (
+            {dataCari ? (
                     <Card data={dataCari} />
                 ) : (
                     <>
@@ -38,7 +38,17 @@ const Programming = (props) => {
                                 </div>
                             </div>
                         ) : (
-                            <>{programming ? <Card data={programming} /> : null}</>
+                            <>{programming ? (
+                                <>
+                                    {
+                                        programming.map((item, index) => {
+                                            return (
+                                                <Card data={item} key={index} />
+                                            )
+                                        })
+                                    }
+                                </>
+                            ) : null}</>
                         )}
                     </>
                 )}
