@@ -9,14 +9,7 @@ const initialState = {
 const covidSlice = createSlice({
     name: "covid",
     initialState,
-    reducers: {
-        setData: (state, action) => {
-            state.covid = action.payload;
-        },
-        resetData: (state) => {
-            state.covid = initialState.data;
-        },
-    },
+    reducers: {},
     extraReducers: (builder) => {
         builder
             .addCase(getCovid.pending, (state, action) => {
@@ -33,7 +26,6 @@ const covidSlice = createSlice({
     },
 });
 
-export const { setData, resetData } = covidSlice.actions;
 export default covidSlice.reducer;
 
 export const getCovid = createAsyncThunk("covid/getData", async () => {
