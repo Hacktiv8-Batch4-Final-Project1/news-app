@@ -23,7 +23,15 @@ const Indonesia = (props) => {
             <hr />
             <div className="d-flex justify-content-center row">
                 {dataCari ? (
-                    <Card data={dataCari} />
+                    <>
+                        {
+                            dataCari.map((item, index) => {
+                                return (
+                                    <Card data={item} key={index} />
+                                )
+                            })
+                        }
+                    </>
                 ) : (
                     <>
                         {isLoading ? (

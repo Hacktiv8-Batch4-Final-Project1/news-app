@@ -9,14 +9,7 @@ const initialState = {
 const programmingSlice = createSlice({
     name: "programming",
     initialState,
-    reducers: {
-        setData: (state, action) => {
-            state.programming = action.payload;
-        },
-        resetData: (state) => {
-            state.programming = initialState.data;
-        },
-    },
+    reducers: {},
     extraReducers: (builder) => {
         builder
             .addCase(getProgramming.pending, (state, action) => {
@@ -33,7 +26,6 @@ const programmingSlice = createSlice({
     },
 });
 
-export const { setData, resetData } = programmingSlice.actions;
 export default programmingSlice.reducer;
 
 export const getProgramming = createAsyncThunk("programming/getData", async () => {

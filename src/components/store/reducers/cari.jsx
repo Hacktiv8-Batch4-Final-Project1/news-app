@@ -9,14 +9,7 @@ const initialState = {
 const cariSlice = createSlice({
     name: "dataCari",
     initialState,
-    reducers: {
-        setData: (state, action) => {
-            state.dataCari = action.payload;
-        },
-        resetData: (state) => {
-            state.dataCari = initialState.data;
-        },
-    },
+    reducers: {},
     extraReducers: (builder) => {
         builder
             .addCase(getCari.pending, (state, action) => {
@@ -34,7 +27,6 @@ const cariSlice = createSlice({
     },
 });
 
-export const { setData, resetData } = cariSlice.actions;
 export default cariSlice.reducer;
 
 export const getCari = createAsyncThunk(

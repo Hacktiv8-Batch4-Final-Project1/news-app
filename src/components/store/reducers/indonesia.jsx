@@ -9,14 +9,7 @@ const initialState = {
 const indonesiaSlice = createSlice({
     name: "indonesia",
     initialState,
-    reducers: {
-        setData: (state, action) => {
-            state.indonesia = action.payload;
-        },
-        resetData: (state) => {
-            state.indonesia = initialState.data;
-        },
-    },
+    reducers: {},
     extraReducers: (builder) => {
         builder
             .addCase(getIndonesia.pending, (state, action) => {
@@ -34,7 +27,6 @@ const indonesiaSlice = createSlice({
     },
 });
 
-export const { setData, resetData } = indonesiaSlice.actions;
 export default indonesiaSlice.reducer;
 
 export const getIndonesia = createAsyncThunk("indonesia/getData", async () => {
